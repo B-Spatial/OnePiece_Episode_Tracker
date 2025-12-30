@@ -10,8 +10,15 @@ df.to_csv("one_piece_season_6.csv", index=False)
 '''
 
 def episode_scrape(url_links):
+    count = 0
+
     for url in url_links:
         table = pd.read_html(url, flavor="lxml", storage_options={"User-Agent": "Chrome/120.0.0.0"})
+
+        if count == 0:
+            table = table[:1]
+        else:
+            table = table[2:]
 
         df = pd.concat(table, ignore_index=True)
 
@@ -19,4 +26,5 @@ def episode_scrape(url_links):
         df.to_csv(f"{name}.csv", index=False, encoding="utf-8-sig")
 
         print(f"Saved {name}.csv")
+        count += 1
     
