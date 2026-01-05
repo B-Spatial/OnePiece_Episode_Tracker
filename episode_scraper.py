@@ -23,8 +23,11 @@ def episode_scrape(url_links):
         df = pd.concat(table, ignore_index=True)
 
         name = url.split("/")[-1]
-        df.to_csv(f"{name}.csv", index=False, encoding="utf-8-sig")
 
-        print(f"Saved {name}.csv")
+        for i, df in enumerate(table, start=1):
+            filename = f"{name}_table_{i}.csv"
+            df.to_csv(filename, index=False, encoding="utf-8-sig")
+            print(f"Saved {filename}")
+
         count += 1
     
