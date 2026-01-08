@@ -1,7 +1,15 @@
+'''
+Title: Onepiece Episode Tracker
+Created By User: B-Spatial
+Github: https://github.com/B-Spatial/OnePiece_Episode_Tracker
+Sources: https://www.scrapehero.com/web-scraping-with-pandas/
+Wikipedia
+Description: Script for scraping Wikipedia tables in order to collect a list of One Piece episodes.
+'''
+
 import pandas as pd
-
-
 def episode_scrape(url_dict):
+    # Utilizes dictionary created by user in main.py file.
     for url, table_slice in url_dict.items():
         tables = pd.read_html(
             url,
